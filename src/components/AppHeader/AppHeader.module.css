@@ -1,0 +1,24 @@
+.header {
+  margin: 40px auto 0;
+  background: #1C1C21;
+
+}
+
+.menu {
+  padding: 16px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item {
+  
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
