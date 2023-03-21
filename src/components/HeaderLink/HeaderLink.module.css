@@ -1,3 +1,10 @@
 .link {
-  
+  display: flex;
+  text-decoration: none;
+  outline: none;
+  gap: 8px;
+}
+
+.default {
+  color: unset
 }

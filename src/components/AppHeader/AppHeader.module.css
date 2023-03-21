@@ -1,24 +1,24 @@
 .header {
-  margin: 40px auto 0;
+  max-width: 1920px;
+  margin: 40px 0 0;
   background: #1C1C21;
-
+  padding: 16px 0;
 }
 
 .menu {
-  padding: 16px;
-}
-
-.container {
+  max-width: 1280px;
+  margin: 0 auto;
   display: flex;
-  flex-direction: row;
-  list-style-type: none;
   justify-content: space-between;
   align-items: center;
 }
 
 .item {
-  
   display: flex;
-  flex-direction: row;
-  gap: 8px;
+  align-items: center;
+}
+
+.logo {
+  margin-left: auto;
+  margin-right: 289px;
 }

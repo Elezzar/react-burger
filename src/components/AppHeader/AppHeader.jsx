@@ -8,27 +8,23 @@ const AppHeader = () => {
   return (
     <header className={headerStyles.header}>
       <nav className={headerStyles.menu}>
-        <ul className={headerStyles.container}>
-          <li className={headerStyles.item}>
-            <HeaderLink>
-              <BurgerIcon type="primary" />
-              <p className="text text_type_main-default" >Конструктор</p>
-            </HeaderLink>
-            <HeaderLink>
-              <ListIcon type="secondary" />
-              <p className="text text_type_main-default text_color_inactive" >Лента заказов</p>
-            </HeaderLink>
-          </li>
-          <li className={headerStyles.item}>
-            <Logo />
-          </li>
-          <li className={headerStyles.item}>
-            <HeaderLink>
-              <ProfileIcon type="secondary" />
-              <p className="text text_type_main-default text_color_inactive">Личный кабинет</p>
-            </HeaderLink>
-          </li>
-        </ul>
+
+        <div className={headerStyles.item}>
+          <HeaderLink>
+            <BurgerIcon type="primary" /> Конструктор
+          </HeaderLink>
+          <HeaderLink inactive>
+            <ListIcon type="secondary" /> Лента заказов
+          </HeaderLink>
+        </div>
+        <div className={headerStyles.logo}>
+          <Logo />
+        </div>
+        <div className={headerStyles.item}>
+          <HeaderLink inactive>
+            <ProfileIcon type="secondary" /> Личный кабинет
+          </HeaderLink>
+        </div>
       </nav>
     </header>
   )

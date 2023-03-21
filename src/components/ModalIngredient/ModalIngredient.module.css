@@ -1,0 +1,27 @@
+.content {
+  padding: 60px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  align-self: start;
+  margin: -10px 0 10px -40px;
+}
+
+.list {
+  min-width: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  gap: 20px
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
