@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from 'prop-types';
+import BurgerPropTypes from '../../utils/BurgerPropTypes.jsx';
 
 import constructorStyles from './BurgerConstructor.module.css'
 
@@ -8,10 +10,10 @@ import { ConstructorElement,
   CurrencyIcon } 
   from '@ya.praktikum/react-developer-burger-ui-components';
 
-  import Modal from "../Modal/Modal";
-  import ModalOrder from "../ModalOrder/ModalOrder";
+import Modal from "../Modal/Modal.jsx";
+import OrderDetails from "../OrderDetails/OrderDetails.jsx";
 
-const BurgerConstructor = (props) => {
+const BurgerConstructor = ({ingredientData}) => {
   const [open, setOpen] = React.useState(false)
 
   const showModal = () => {
@@ -34,62 +36,24 @@ const BurgerConstructor = (props) => {
             thumbnail={'https://code.s3.yandex.net/react/code/bun-01.png'}
           />
         </li>
-        <li className={constructorStyles.item}>
-          <DragIcon type="primary" />
-          <ConstructorElement
-            text="Мини-салат Экзо-Плантаго"
-            price={4400}
-            thumbnail={'https://code.s3.yandex.net/react/code/salad.png'}
-          />
-        </li>
-        <li className={constructorStyles.item}>
-          <DragIcon type="primary" /> 
-          <ConstructorElement
-            text="Мясо бессмертных моллюсков Protostomia"
-            price={1337}
-            thumbnail={'https://code.s3.yandex.net/react/code/meat-02.png'}
-          />
-        </li>
-        <li className={constructorStyles.item}>
-          <DragIcon type="primary" />
-          <ConstructorElement
-            text="Соус с шипами Антарианского плоскоходца"
-            price={88}
-            thumbnail={'https://code.s3.yandex.net/react/code/sauce-01.png'}
-          />
-        </li>
-        <li className={constructorStyles.item}>
-          <DragIcon type="primary" />
-          <ConstructorElement
-            text="Мини-салат Экзо-Плантаго"
-            price={4400}
-            thumbnail={'https://code.s3.yandex.net/react/code/salad.png'}
-          />
-        </li>
-        <li className={constructorStyles.item}>
-          <DragIcon type="primary" />
-          <ConstructorElement
-            text="Соус с шипами Антарианского плоскоходца"
-            price={88}
-            thumbnail={'https://code.s3.yandex.net/react/code/sauce-01.png'}
-          />
-        </li>
-        <li className={constructorStyles.item}>
-          <DragIcon type="primary" /> 
-          <ConstructorElement
-            text="Мясо бессмертных моллюсков Protostomia"
-            price={1337}
-            thumbnail={'https://code.s3.yandex.net/react/code/meat-02.png'}
-          />
-        </li>
-        <li className={constructorStyles.item}>
-          <DragIcon type="primary" />
-          <ConstructorElement
-            text="Мини-салат Экзо-Плантаго"
-            price={4400}
-            thumbnail={'https://code.s3.yandex.net/react/code/salad.png'}
-          />
-        </li>
+        <li className={constructorStyles.filling}>
+          <ul className={`pl-4 ${constructorStyles.list}`}>
+            {ingredientData.map(item => {
+              if(item.type !== 'bun') {
+                return (
+                  <li key={item._id}className={constructorStyles.item}>
+                    <DragIcon type="primary" />
+                    <ConstructorElement
+                      text={item.name}
+                      price={item.price}
+                      thumbnail={item.image}
+                    />
+                  </li>
+                )
+              }
+            })}
+          </ul>
+        </li>        
         <li className={constructorStyles.item}>
           <ConstructorElement
             type="bottom"
@@ -112,11 +76,15 @@ const BurgerConstructor = (props) => {
 
       {open && (
           <Modal closePopup={hideModal}>
-            <ModalOrder />
+            <OrderDetails />
           </Modal>
         )}
     </section>
   );
+}
+
+BurgerConstructor.propTypes = {
+  ingredientData: PropTypes.arrayOf(BurgerPropTypes).isRequired
 }
 
 export default BurgerConstructor;

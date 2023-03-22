@@ -1,8 +1,8 @@
-import orderStyle from './ModalOrder.module.css'
+import orderStyle from './OrderDetails.module.css'
 
 import readyImage from '../../images/ready.svg'
 
-const ModalOrder = () => {
+const OrderDetails = () => {
   return ( 
     <div className={orderStyle.content}>
       <p className={`text text_type_digits-large ${orderStyle.number}`}>034536</p>
@@ -19,4 +19,4 @@ const ModalOrder = () => {
   );
 }
 
-export default ModalOrder;
+export default OrderDetails;

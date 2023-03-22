@@ -10,19 +10,19 @@ const modal = document.querySelector('#modal')
 
 const Modal = ({children, closePopup}) => {
 
-  const closePopupOnEsc = (evt) => {
-    if(evt.key === 'Escape') {
-      closePopup()
-    }
-  }
-
   React.useEffect(() => {
+    const closePopupOnEsc = (evt) => {
+      if(evt.key === 'Escape') {
+        closePopup()
+      }
+    }
+
     document.addEventListener('keydown', closePopupOnEsc)
 
     return () => {
       document.removeEventListener('keydown', closePopupOnEsc)
     }
-  })
+  }, [])
 
   return createPortal( 
     <ModalOverlay closePopup={closePopup}>

@@ -2,12 +2,12 @@ import React from "react";
 
 import itemStyle from './IngredientItem.module.css'
 
-import PropTypes from 'prop-types';
-import BurgerPropTypes from '../../utils/BurgerPropTypes';
+import BurgerPropTypes from "../../utils/BurgerPropTypes.jsx";
 
 import { CurrencyIcon, Counter  } from '@ya.praktikum/react-developer-burger-ui-components';
-import Modal from "../Modal/Modal";
-import ModalIngredient from "../ModalIngredient/ModalIngredient";
+
+import Modal from "../Modal/Modal.jsx";
+import IngredientDetails from "../IngredientDetails/IngredientDetails.jsx";
 
 const IngredientItem = ( {data} ) => {
   const [open, setOpen] = React.useState(false)
@@ -32,7 +32,7 @@ const IngredientItem = ( {data} ) => {
 
       {open && (
           <Modal closePopup={hideModal}>
-            <ModalIngredient ingredient={data}/>
+            <IngredientDetails ingredient={data}/>
           </Modal>
         )}
 
@@ -41,7 +41,7 @@ const IngredientItem = ( {data} ) => {
 }
 
 IngredientItem.propTypes = {
-  data: PropTypes.arrayOf(BurgerPropTypes)
+  data: BurgerPropTypes.isRequired
 }
 
 export default IngredientItem;

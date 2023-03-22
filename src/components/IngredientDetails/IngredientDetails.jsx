@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
 
-import modalStyle from './ModalIngredient.module.css'
+import modalStyle from './IngredientDetails.module.css'
 
-const ModalIngredient = ({ingredient}) => {
+import BurgerPropTypes from "../../utils/BurgerPropTypes.jsx";
+
+const IngredientDetails = ({ingredient}) => {
   return ( 
     <div className={modalStyle.content}>
       <h2 className={`text text_type_main-large ${modalStyle.header}`}>Детали ингредиента</h2>
@@ -30,8 +32,8 @@ const ModalIngredient = ({ingredient}) => {
   );
 }
 
-ModalIngredient.propTypes = {
-  ingredient: PropTypes.object.isRequired,
+IngredientDetails.propTypes = {
+  ingredient: BurgerPropTypes.isRequired
 }
 
-export default ModalIngredient;
+export default IngredientDetails;

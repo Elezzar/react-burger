@@ -4,7 +4,7 @@ import Tabs from '../Tabs/Tabs.jsx'
 import IngredientItems from '../IngredientItems/IngredientItems.jsx'
 
 import PropTypes from 'prop-types';
-import BurgerPropTypes from '../../utils/BurgerPropTypes';
+import BurgerPropTypes from '../../utils/BurgerPropTypes.jsx';
 
 const BurgerIngredients = (props) => {
   const bunsList = props.ingredientData.filter((bun) => bun.type === 'bun')
@@ -34,7 +34,7 @@ const BurgerIngredients = (props) => {
 }
 
 BurgerIngredients.propTypes = {
-  props: PropTypes.arrayOf(BurgerPropTypes)
+  ingredientData: PropTypes.arrayOf(BurgerPropTypes).isRequired
 }
 
 export default BurgerIngredients;

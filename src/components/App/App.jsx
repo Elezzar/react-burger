@@ -1,7 +1,5 @@
 import React from "react";
 
-import './App.css';
-
 import AppHeader from '../AppHeader/AppHeader.jsx'
 import Main from '../Main/Main.jsx'
 
@@ -30,14 +28,14 @@ const App = () => {
   },)
   
   return ( 
-    <div className="App">
+    <>
       <AppHeader />
       <Main>
         <BurgerIngredients ingredientData={ingredients}/>
         <BurgerConstructor ingredientData={ingredients}/>
       </Main>
 
-    </div>
+    </>
   );
 }
 

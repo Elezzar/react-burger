@@ -3,7 +3,7 @@ import itemsStiles from './IngredientItems.module.css'
 import IngredientItem from '../IngredientItem/IngredientItem.jsx'
 
 import PropTypes from 'prop-types';
-import BurgerPropTypes from '../../utils/BurgerPropTypes';
+import BurgerPropTypes from '../../utils/BurgerPropTypes.jsx';
 
 const IngredientItems = (props) => {
   const ingredientsList = props.ingredientData
@@ -23,7 +23,7 @@ const IngredientItems = (props) => {
 }
 
 IngredientItems.propTypes = {
-  props: PropTypes.arrayOf(BurgerPropTypes)
+  ingredientData: PropTypes.arrayOf(BurgerPropTypes).isRequired
 }
 
 export default IngredientItems;
