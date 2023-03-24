@@ -1,0 +1,19 @@
+.window {
+  display: flex;
+  position: relative;
+  max-width: 720px;
+  width: 100%;
+  background-color: #1C1C21;
+  border-radius: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 40px;
+  top: 60px;
+}

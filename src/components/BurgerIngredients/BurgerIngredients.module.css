@@ -1,0 +1,25 @@
+.section {
+  max-width: 600px;
+  max-height: 756px;
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  padding: 0;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #8585AD;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #8585AD;
+}
+
+.item {
+  padding-bottom: 40px;
+}

@@ -1,0 +1,14 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  width: 272px;
+  height: 209px;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.price {
+  display: flex;
+  gap: 5px;
+}
