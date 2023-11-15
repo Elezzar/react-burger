@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useDrag } from "react-dnd";
-import { useMemo } from "react";
+import { useState, useMemo } from "react";
 
 import { passData, resetData } from "../../services/actions/modalIngredientAction";
 
@@ -15,20 +15,23 @@ import IngredientDetails from "../IngredientDetails/IngredientDetails.jsx";
 
 const IngredientItem = ({data}) => {
 
+  const [showModal, setShowModal] = useState(false);
+
+
   const getIngredientsData = state => state.orderList;
   const ingredientsData = useSelector(getIngredientsData);
   const { bunItem, ingredientsList } = ingredientsData;
 
-  const getIngredient = state => state.ingredient.ingredient;
-  const ingredient = useSelector(getIngredient);
   const dispatch = useDispatch();
 
   const handleOpenModal = () => {
     dispatch(passData(data));
+    setShowModal(true);
   }
 
   const handleCloseModal = () => {
     dispatch(resetData());
+    setShowModal(false);  
   }
 
   const [{opacity}, dragRef] = useDrag({
@@ -63,7 +66,7 @@ const IngredientItem = ({data}) => {
       </div>
       <p className="text text_type_main-default">{data.name}</p>
 
-      {ingredient && (
+      {showModal && (
           <Modal closePopup={handleCloseModal}>
             <IngredientDetails closePopup={handleCloseModal} ingredient={data}/>
           </Modal>

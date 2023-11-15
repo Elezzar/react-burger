@@ -3,7 +3,7 @@ import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burg
 import { useDispatch } from "react-redux";
 import { useDrag, useDrop } from "react-dnd";
 import { useRef } from "react";
-import { moveIngredient, deleteIngredient} from "../../services/reducers/ingredientSlice";
+import { moveIngredient, deleteIngredient} from "../../services/actions/ingredientAction";
 import PropTypes from 'prop-types';
 import BurgerPropTypes from "../../utils/BurgerPropTypes";
 
@@ -51,7 +51,7 @@ const IngredientElement = ({item, index}) => {
         text={item.name}
         price={item.price}
         thumbnail={item.image}
-        handleClose={() => {handleDelete()}}
+        handleClose={() => {handleDelete(item, index)}}
       />
     </li>
   )

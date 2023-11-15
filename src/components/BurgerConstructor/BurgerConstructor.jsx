@@ -14,7 +14,7 @@ import Modal from "../Modal/Modal.jsx";
 import OrderDetails from "../OrderDetails/OrderDetails.jsx";
 
 import { loadOrder, clearOrder } from "../../services/actions/loadOrder";
-import { addBun, addIngredient, resetIngredients } from '../../services/reducers/ingredientSlice';
+import { addBun, addIngredient, resetIngredients } from '../../services/actions/ingredientAction';
 
 import { useDrop } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
@@ -126,7 +126,7 @@ const BurgerConstructor = () => {
 
       {orderNumber && (
         <Modal closePopup={handleCloseModal}>
-          <OrderDetails closePopup={handleCloseModal} />
+          <OrderDetails />
         </Modal>
       )}
     </section>
