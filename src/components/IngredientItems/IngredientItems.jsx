@@ -5,11 +5,13 @@ import IngredientItem from '../IngredientItem/IngredientItem.jsx'
 import PropTypes from 'prop-types';
 import BurgerPropTypes from '../../utils/BurgerPropTypes.jsx';
 
-const IngredientItems = (props) => {
+import { forwardRef } from "react";
+
+const IngredientItems = forwardRef((props, ref) => {
   const ingredientsList = props.ingredientData
 
   return (  
-    <ul className={`pt-6 pl-4 ${itemsStiles.items}`}>
+    <ul className={`pt-6 pl-4 ${itemsStiles.items}`} ref={ref}>
       {ingredientsList.map(function(ingredient) {
         return (
           <IngredientItem 
@@ -20,7 +22,7 @@ const IngredientItems = (props) => {
       })}
     </ul>
   );
-}
+})
 
 IngredientItems.propTypes = {
   ingredientData: PropTypes.arrayOf(BurgerPropTypes).isRequired
