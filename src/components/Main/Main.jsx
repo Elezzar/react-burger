@@ -1,10 +1,20 @@
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
 import mainStyles from './Main.module.css'
 
-const Main = (props) => {
+import BurgerIngredients from '../BurgerIngredients/BurgerIngredients.jsx'
+import BurgerConstructor from '../BurgerConstructor/BurgerConstructor.jsx'
+
+const Main = () => {
+
   return (  
-    <main className={mainStyles.main}>
-      {props.children}
-    </main>
+    <DndProvider backend={HTML5Backend}>
+      <main className={mainStyles.main}>
+        <BurgerIngredients />
+        <BurgerConstructor />
+      </main>
+    </DndProvider>
   );
 }
 
