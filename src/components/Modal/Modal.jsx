@@ -22,7 +22,7 @@ const Modal = ({children, closePopup}) => {
     return () => {
       document.removeEventListener('keydown', closePopupOnEsc)
     }
-  }, [])
+  }, [closePopup])
 
   return createPortal( 
     <ModalOverlay closePopup={closePopup}>

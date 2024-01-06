@@ -1,0 +1,51 @@
+.main {
+  margin: 120px auto 0;
+  max-width: 1240px;
+  display: flex;
+  gap: 60px;
+}
+
+.nav {
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  padding: 17px 0 17px;
+}
+
+.item:hover {
+  opacity: 50%;
+  transition: all 0.5s;
+}
+
+.navlink {
+  text-decoration: none;
+}
+
+.active {
+  color: unset;
+}
+
+.text {
+  margin: 0;
+  color: #8585AD;
+  opacity: 40%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.box {
+  align-self: end;
+  display: flex;
+}
