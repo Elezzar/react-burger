@@ -1,0 +1,30 @@
+.main {
+  margin: 180px auto auto; /* проверить margin */
+  width: 480px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.item {
+  margin-top: 80px;
+  display: flex;
+  gap: 8px;
+}
+
+.link {
+  color: #4c4cff;
+  text-decoration: none;
+}
+
+.link:hover {
+  opacity: 50%;
+  transition: all 0.5s;
+}

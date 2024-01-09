@@ -1,13 +1,10 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate, useLocation } from "react-router-dom";
 
 import constructorStyles from "./BurgerConstructor.module.css";
 
-import {
-  ConstructorElement,
-  Button,
-  CurrencyIcon,
-} from "@ya.praktikum/react-developer-burger-ui-components";
+import { ConstructorElement, Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import IngredientElement from "../IngredientElement/IngredientElement";
 import Modal from "../Modal/Modal.jsx";
@@ -19,9 +16,13 @@ import { addBun, addIngredient, resetIngredients } from '../../services/actions/
 import { useDrop } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
 
+
 const BurgerConstructor = () => {
-  
+  const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const getIngredientsData = state => state.orderList;
   const ingredientsData = useSelector(getIngredientsData);
@@ -30,17 +31,19 @@ const BurgerConstructor = () => {
   const getOrderNumber = state => state.orders.number;
   const orderNumber = useSelector(getOrderNumber);
 
-  const bunPrice = () => {
-    if (bunItem === null || bunItem === undefined) {
-      return 0;
-    } else {
-      return bunItem.price * 2;
-    }
-  }
+  const userName = useSelector(store => store.user.name);
 
   const totalPrice = useMemo(() => {
-    return ingredientsList.reduce((acc, ingredient) => acc + ingredient.price, (bunPrice()))
-  }, [ingredientsList, bunPrice])
+    const bunPrice = () => {
+      if (bunItem === null || bunItem === undefined) {
+        return 0;
+      } else {
+        return bunItem.price * 2;
+      }
+    }
+
+    return ingredientsList.reduce((acc, ingredient) => acc + ingredient.price, bunPrice());
+  }, [ingredientsList, bunItem]);
 
   const [ , dropTarget] = useDrop({
     accept: 'ingredients',
@@ -62,11 +65,32 @@ const BurgerConstructor = () => {
     dispatch(clearOrder());
     dispatch(resetIngredients());
   };
+
   const handleOpenModal = () => {
+    setLoading(true); 
+
     const bunID = bunItem._id;
     const components = ingredientsList.map(ingredient => ingredient._id);
     const burgerComponentsID = [bunID,...components,bunID];
-    dispatch(loadOrder(burgerComponentsID));
+
+    if (userName) {
+      dispatch(loadOrder(burgerComponentsID))
+        .then(() => {
+          setLoading(false); 
+        })
+        .catch((error) => {
+          console.error(`Произошла ошибка: ${error}`);
+          setLoading(false); 
+        });
+    } else {
+      navigate(
+        '/login', {
+          replace: true,
+          state: { from: location.pathname }
+        }
+      )
+    }
+    
   };
 
   return (
@@ -104,7 +128,8 @@ const BurgerConstructor = () => {
 
       ) : (
         <>
-          <p className={`${constructorStyles.item} text text_type_main-defaul p-4`}>Перетащите ингридиенты в зону конструктора</p>
+          <p className={`${constructorStyles.item} text text_type_main-defaul p-4`}>Перетащите ингредиенты в зону конструктора</p>
+          <div className={constructorStyles.box}></div>
         </>
       )}
 
@@ -123,6 +148,8 @@ const BurgerConstructor = () => {
           Оформить заказ
         </Button>
       </div>
+      
+      {loading && <p>Загрузка...</p>}
 
       {orderNumber && (
         <Modal closePopup={handleCloseModal}>

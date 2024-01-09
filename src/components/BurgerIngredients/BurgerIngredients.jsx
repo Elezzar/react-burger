@@ -39,7 +39,7 @@ const BurgerIngredients = () => {
       setCurrent('bun');
     } 
     if (containerRect.top > sauceRect.top) {
-      setCurrent('sause');
+      setCurrent('sauсe');
     }
     if (containerRect.top > mainRect.top) {
       setCurrent('main');
@@ -55,7 +55,7 @@ const BurgerIngredients = () => {
           <h2 className="text text_type_main-medium">Булки</h2>
           <IngredientItems ingredientData={bunsList}/>
         </li>
-        <li className={ingredientStyles.sause} ref={sauceRef}>
+        <li className={ingredientStyles.sauсe} ref={sauceRef}>
           <h2 className="text text_type_main-medium">Соусы</h2>
           <IngredientItems ingredientData={saucesList}/>
         </li>

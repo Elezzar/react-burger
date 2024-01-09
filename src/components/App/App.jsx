@@ -1,30 +1,27 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import { fetchIngredients } from '../../services/actions/loadIngredients.js';
+import { updateCurrentUserAction } from '../../services/actions/userAction.js';
 
 import AppHeader from '../AppHeader/AppHeader.jsx'
-import Main from '../Main/Main.jsx'
-
-import { fetchIngredients } from "../../services/actions/loadIngredients.js";
+import AppRoutes from '../AppRoutes/AppRoutes.jsx';
 
 const App = () => {
-
   const dispatch = useDispatch();
-
-  const getIngredientsState = state => state.ingredients;
-  const ingredientsState = useSelector(getIngredientsState);
-
-  const { loadingIngredients, errorLoadingIngredients, ingredientsLoaded} = ingredientsState;
 
   useEffect(() => {
     dispatch(fetchIngredients());
-  }, [dispatch])
+    dispatch(updateCurrentUserAction());
+  }, [dispatch]);
 
   return ( 
     <>
-      <AppHeader />
-      {loadingIngredients && <p>...Загрузка</p>}
-      {errorLoadingIngredients && <p>Ошибка загрузки</p>}
-      {ingredientsLoaded && <Main />}
+      <Router>
+        <AppHeader />
+        <AppRoutes />
+      </Router>
     </>
   );
 }
