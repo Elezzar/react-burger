@@ -1,25 +1,25 @@
-// import { useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-// import { fetchIngredients } from '../../services/actions/loadIngredients.js';
-// import { updateCurrentUserAction } from '../../services/actions/userAction.js';
+import { fetchIngredients } from '../../services/actions/loadIngredients.js';
+import { updateCurrentUserAction } from '../../services/actions/userAction.js';
 
 import AppHeader from '../AppHeader/AppHeader.jsx'
 import AppRoutes from '../AppRoutes/AppRoutes.jsx';
 
 const App = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchIngredients());
-  //   dispatch(updateCurrentUserAction());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchIngredients());
+    dispatch(updateCurrentUserAction());
+  }, [dispatch]);
 
   return ( 
     <>
-      <AppHeader />
       <Router>
+        <AppHeader />
         <AppRoutes />
       </Router>
     </>

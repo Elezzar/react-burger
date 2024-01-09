@@ -1,19 +1,22 @@
-// import React from 'react';
 import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 
 import PropTypes from 'prop-types';
 
-// import LoadingIndicator from './LoadingIndicator'; // Предполагаем, что у вас есть компонент индикатора загрузки
+// import LoadingIndicator from './LoadingIndicator'; // сделать компонент индикатора загрузки
 
 const Protected = ({ requiresUnauth = false, children }) => {
   const authCheckedSuccess = useSelector(store => store.user.isAuthChecked);
   const userName = useSelector(store => store.user.name);
   const location = useLocation();
 
+  // console.log(requiresUnauth)
+  // console.log(authCheckedSuccess)
+  // console.log(userName)
+
   if (!authCheckedSuccess) {
     return <p>Загрузка...</p>
-    // return <LoadingIndicator />; // Замените заглушку текста на индикатор загрузки
+    // return <LoadingIndicator />; // Заменить заглушку текста на индикатор загрузки
   }
 
   if (requiresUnauth && userName) {

@@ -1,6 +1,7 @@
+import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useDrag } from "react-dnd";
-import { useState, useMemo } from "react";
+import { useNavigate, useMatch, useLocation } from "react-router-dom";
 
 import { passData, resetData } from "../../services/actions/modalIngredientAction";
 
@@ -14,9 +15,11 @@ import Modal from "../Modal/Modal.jsx";
 import IngredientDetails from "../IngredientDetails/IngredientDetails.jsx";
 
 const IngredientItem = ({data}) => {
-
-  const [showModal, setShowModal] = useState(false);
-
+  const navigate = useNavigate();
+  const location = useLocation();
+  const match = useMatch('ingredients/:id');
+  const { id } = match?.params || {};
+  const background = location.state?.modal;
 
   const getIngredientsData = state => state.orderList;
   const ingredientsData = useSelector(getIngredientsData);
@@ -26,12 +29,18 @@ const IngredientItem = ({data}) => {
 
   const handleOpenModal = () => {
     dispatch(passData(data));
-    setShowModal(true);
   }
 
   const handleCloseModal = () => {
     dispatch(resetData());
-    setShowModal(false);  
+    navigate(-1); 
+  }
+
+  const urlOpenModal = () => {
+    if (id !== data._id) {
+      navigate(`/ingredients/${data._id}`, { state: { modal: true, background: location } })
+    }
+    handleOpenModal()
   }
 
   const [{opacity}, dragRef] = useDrag({
@@ -57,7 +66,7 @@ const IngredientItem = ({data}) => {
 
 
   return (  
-    <li className={itemStyle.item} onClick={handleOpenModal} style={{opacity}} ref={dragRef}>
+    <li className={itemStyle.item} onClick={urlOpenModal} style={{opacity}} ref={dragRef}>
       <img src={data.image} alt={data.name}></img>
       {counter > 0 && (<Counter count={counter} size={counter > 99 ? "small" : "default"} extraClass="m-1"/>)}
       <div className={itemStyle.price}>
@@ -66,7 +75,7 @@ const IngredientItem = ({data}) => {
       </div>
       <p className="text text_type_main-default">{data.name}</p>
 
-      {showModal && (
+      {background && (
           <Modal closePopup={handleCloseModal}>
             <IngredientDetails closePopup={handleCloseModal} ingredient={data}/>
           </Modal>

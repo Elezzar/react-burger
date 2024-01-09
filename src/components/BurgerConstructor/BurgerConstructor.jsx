@@ -31,7 +31,7 @@ const BurgerConstructor = () => {
   const getOrderNumber = state => state.orders.number;
   const orderNumber = useSelector(getOrderNumber);
 
-  const userAuthenticated = useSelector(store => store.user.isAuthChecked)
+  const userName = useSelector(store => store.user.name);
 
   const totalPrice = useMemo(() => {
     const bunPrice = () => {
@@ -73,7 +73,7 @@ const BurgerConstructor = () => {
     const components = ingredientsList.map(ingredient => ingredient._id);
     const burgerComponentsID = [bunID,...components,bunID];
 
-    if (userAuthenticated) {
+    if (userName) {
       dispatch(loadOrder(burgerComponentsID))
         .then(() => {
           setLoading(false); 

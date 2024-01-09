@@ -1,4 +1,4 @@
-import { registerUser, loginUser, refreshToken, logOut, recoverPassword, resetPassword, } from "../../utils/api";
+import { registerUser, loginUser, refreshToken, logOut, recoverPassword, resetPassword, urlApi, } from "../../utils/api";
 import { setCookie, getCookie } from "../../utils/cookies";
 
 export const FETCH_REGISTER_REQUEST = 'FETCH_REGISTER_REQUEST';
@@ -206,6 +206,7 @@ export function registerUserAction(user) {
 
 /** action логина пользователя */
 export function loginUserAction(user) {
+  console.log(user)
   return async function (dispatch) {
     dispatch(fetchLoginRequest());
     
@@ -215,7 +216,7 @@ export function loginUserAction(user) {
       setCookie("refreshToken", data.refreshToken);
       setCookie("accessToken", data.accessToken.split("Bearer ")[1], { expires: 1200 });
       dispatch(fetchLoginSuccess(data));
-      console.log('userLogin', response.message); //убрать после сдачи
+      console.log('userLogin', response); //убрать после сдачи
     } 
     catch (error) {
       dispatch(fetchLoginFailed(error));
@@ -235,7 +236,6 @@ export function updateUserToken(token) {
       setCookie("accessToken", data.accessToken.split("Bearer ")[1], { expires: 1200 });
       setCookie("refreshToken", data.refreshToken);
       dispatch(fetchTokenSuccess(data));
-      console.log('updateUserToken', response.message); //убрать после сдачи
     } 
     catch (error) {
       dispatch(fetchTokenFailed(error));
@@ -243,7 +243,7 @@ export function updateUserToken(token) {
     }
   }
 };
-  
+
 /** action LogOut пользователя */
 export function logOutAction(refreshToken) {
   return async function (dispatch) {
@@ -254,11 +254,11 @@ export function logOutAction(refreshToken) {
       setCookie("accessToken", "");
       setCookie("refreshToken", ""); 
       dispatch(fetchLogOutSuccess());
-      console.log('logOut', response.message); //убрать при сдаче
+      console.log('logOut', response); //убрать при сдаче
     } 
     catch (error) {
       dispatch(fetchLogOutFailed(error));
-      console.error('Ошибка, выйти из профиля', error);
+      console.error('Ошибка, выйти из профиля не получилось', error);
     }
   }
 };
@@ -303,11 +303,13 @@ export function resetPasswordAction(inputPassword, inputCode) {
   const checkResponse = res => {
     return res.ok ? res.json() : res.json().then(err => Promise.reject(err));
   };
-  
+
   //функция запроса на сервер и обновления токена в случае ошибки
   export const fetchWithRefresh = async (dispatch, url, options, actionCreators) => {
+        
     const { request, success, failure } = actionCreators;
     dispatch(request());
+
     const accessToken = getCookie('accessToken');
     if (accessToken) {
       try {
@@ -331,7 +333,7 @@ export function resetPasswordAction(inputPassword, inputCode) {
   /** action редактирования профиля */
   export function editUserAction(user) {
     return async function (dispatch) {
-      return fetchWithRefresh(dispatch, `auth/user`,
+      return fetchWithRefresh(dispatch, `${urlApi}/auth/user`,
         {
           method: 'PATCH',
           headers: {
@@ -352,7 +354,7 @@ export function resetPasswordAction(inputPassword, inputCode) {
   /**action обновления данных профиля */
   export function updateCurrentUserAction() {
     return async function (dispatch) {
-      return fetchWithRefresh(dispatch, `auth/user`,
+      return fetchWithRefresh(dispatch, `${urlApi}/auth/user`,
         {
           method: 'GET',
           headers: {

@@ -6,8 +6,9 @@
 }
 
 .header {
-  align-self: start;
-  margin: -10px 0 10px -40px;
+  width: 640px;
+  padding-bottom: 8px;
+  text-align: center;
 }
 
 .list {

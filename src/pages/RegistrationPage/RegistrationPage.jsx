@@ -26,7 +26,7 @@ const RegistrationPage = () => {
     setPassword(evt.target.value);
   };
 
-  const registerSuccess = useSelector(store => store.user.isAuthChecked);
+  const registerSuccess = useSelector(store => store.user.success);
 
   const dispatch = useDispatch();
 
@@ -40,10 +40,11 @@ const RegistrationPage = () => {
     };
     dispatch(registerUserAction(user));
     
-    if (registerSuccess) {
-      return <Navigate to="/" />;
-    }
   };
+  
+  if (registerSuccess) {
+    return <Navigate to="/" />;
+  }
 
   return ( 
     <main className={registrationPageStyles.main}>

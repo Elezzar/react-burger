@@ -110,33 +110,6 @@ const resetPassword = (inputPassword, inputCode) => {
   return request('password-reset/reset', options);
 };
 
-// /**универсальная функция запроса на сервер и обновления токена в случае ошибки */
-// export const fetchWithRefresh = async ( dispatch, endpoint, options, actionCreators) => {
-//   const { request, success, failure } = actionCreators;
-//   dispatch(request());
-//   const accessToken = getCookie("accessToken");
-//   if (accessToken) {
-//     try {
-//       const response = await request(endpoint, {
-//         ...options,
-//         headers: {
-//           ...options.headers,
-//           authorization: "Bearer " + accessToken,
-//         },
-//       });
-//       dispatch(success(response));
-//     } catch (error) {
-//       if (["jwt expired", "jwt malformed"].includes(error.message)) {
-//         dispatch(updateUserToken(getCookie("refreshToken"))); //рефрешу токен и записываю в куки
-//         const response = await request(endpoint, options); //снова пробую авторизоваться
-//         dispatch(success(response));
-//       } else {
-//         dispatch(failure(error));
-//       }
-//     }
-//   }
-// };
-
 export {
   request,
   getIngredients,
@@ -147,5 +120,5 @@ export {
   logOut,
   recoverPassword,
   resetPassword,
-  // fetchWithRefresh
+  urlApi
 }

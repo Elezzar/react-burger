@@ -1,10 +1,7 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
-import { OnlyAuthProtected, OnlyUnauthProtected } from '../../utils/ProtectedRoute';
-import { fetchIngredients } from '../../services/actions/loadIngredients.js';
-import { updateCurrentUserAction } from '../../services/actions/userAction.js';
+import { OnlyAuthProtected, OnlyUnauthProtected } from '../ProtectedRoute/ProtectedRoute';
+
 
 import MainPage from '../../pages/MainPage/MainPage.jsx';
 import LoginPage from '../../pages/LoginPage/LoginPage.jsx';
@@ -19,17 +16,12 @@ const AppRoutes = () => {
   const location = useLocation();
   const background = location.state && location.state.modal;
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchIngredients());
-    dispatch(updateCurrentUserAction());
-  }, [dispatch]);
-
   return (
     <Routes>
       {!background && <Route path="/ingredients/:id" element={<IngredientPage/>}/>}
-      <Route path="/" element={<MainPage />} />
+      <Route path="/" element={<MainPage />} location={background || location}>
+        <Route path="ingredients/:id" element={<IngredientPage />} />
+      </Route>
       <Route path="/login" element={<OnlyUnauthProtected children={<LoginPage />} />} />
       <Route path="/register" element={<OnlyUnauthProtected children={<RegistrationPage />} />} />
       <Route path="/forgot-password" element={<OnlyUnauthProtected children={<ForgotPasswordPage />} />} />
