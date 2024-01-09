@@ -15,6 +15,7 @@ import { addBun, addIngredient, resetIngredients } from '../../services/actions/
 
 import { useDrop } from 'react-dnd';
 import { v4 as uuidv4 } from 'uuid';
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 
 const BurgerConstructor = () => {
@@ -149,7 +150,7 @@ const BurgerConstructor = () => {
         </Button>
       </div>
       
-      {loading && <p>Загрузка...</p>}
+      {loading && <LoadingSpinner />}
 
       {orderNumber && (
         <Modal closePopup={handleCloseModal}>
