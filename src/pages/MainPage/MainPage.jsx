@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 
 import Main from '../../components/Main/Main'
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 const MainPage = () => {
 
@@ -11,7 +12,7 @@ const MainPage = () => {
 
   return ( 
     <>
-      {loadingIngredients && <p>...Загрузка</p>}
+      {loadingIngredients && <LoadingSpinner />}
       {errorLoadingIngredients && <p>Ошибка загрузки</p>}
       {ingredientsLoaded && <Main />}
     
