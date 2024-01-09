@@ -18,8 +18,8 @@ const IngredientItem = ({data}) => {
   const navigate = useNavigate();
   const location = useLocation();
   const match = useMatch('ingredients/:id');
-  const { id } = match?.params || {};
-  const background = location.state?.modal;
+  const { id } = match?.params || {id: null};
+  const background = location.state?.modal && id === data._id;
 
   const getIngredientsData = state => state.orderList;
   const ingredientsData = useSelector(getIngredientsData);
@@ -39,8 +39,9 @@ const IngredientItem = ({data}) => {
   const urlOpenModal = () => {
     if (id !== data._id) {
       navigate(`/ingredients/${data._id}`, { state: { modal: true, background: location } })
+    } else {
+      handleOpenModal()
     }
-    handleOpenModal()
   }
 
   const [{opacity}, dragRef] = useDrag({
@@ -77,7 +78,7 @@ const IngredientItem = ({data}) => {
 
       {background && (
           <Modal closePopup={handleCloseModal}>
-            <IngredientDetails closePopup={handleCloseModal} ingredient={data}/>
+            <IngredientDetails closePopup={handleCloseModal} />
           </Modal>
         )}
 
