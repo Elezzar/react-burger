@@ -18,6 +18,9 @@ const OrderFeedInfo = () => {
   const checkLocation = location.pathname.includes('feed');
   const currentOrders = checkLocation === true ? ordersWSData : userOrdersWSData;
   const order = currentOrders.find(order => order._id === id);
+
+  if (!order) return null;
+
   const orderStatus = order.status === 'done' ? 'Выполнен' : 'Готовится';
 
   const orderDate = <FormattedDate date={new Date(order.createdAt)} />
@@ -33,8 +36,6 @@ const OrderFeedInfo = () => {
   const ingredientsCounted = countIngredients(order.ingredients);
   const ingredientsSorted = Object.keys(ingredientsCounted);
   const countSorted = Object.values(ingredientsCounted);
-
-  if (!order) return null;
 
   return ( 
     <div className={OrderFeedInfoStyles.container}>
