@@ -206,7 +206,6 @@ export function registerUserAction(user) {
 
 /** action логина пользователя */
 export function loginUserAction(user) {
-  console.log(user)
   return async function (dispatch) {
     dispatch(fetchLoginRequest());
     
@@ -216,7 +215,6 @@ export function loginUserAction(user) {
       setCookie("refreshToken", data.refreshToken);
       setCookie("accessToken", data.accessToken.split("Bearer ")[1], { expires: 1200 });
       dispatch(fetchLoginSuccess(data));
-      console.log('userLogin', response); //убрать после сдачи
     } 
     catch (error) {
       dispatch(fetchLoginFailed(error));
@@ -254,7 +252,6 @@ export function logOutAction(refreshToken) {
       setCookie("accessToken", "");
       setCookie("refreshToken", ""); 
       dispatch(fetchLogOutSuccess());
-      console.log('logOut', response); //убрать при сдаче
     } 
     catch (error) {
       dispatch(fetchLogOutFailed(error));
@@ -272,7 +269,6 @@ export function recoverPasswordAction(email) {
       const response = await recoverPassword(email);
       const data = await response;
       dispatch(fetchPasswordRecoverSuccess(data));
-      console.log('passwordRecover', response.message); //убрать при сдаче
     } 
     catch (error) {
       dispatch(fetchPasswordRecoverFailed(error));
@@ -290,7 +286,6 @@ export function resetPasswordAction(inputPassword, inputCode) {
       const response = await resetPassword(inputPassword, inputCode);
       const data = await response;
       dispatch(fetchPasswordResetSuccess(data));
-      console.log('resetPassword', response.message);
     } 
     catch (error) {
       dispatch(fetchPasswordResetFailed(error));
