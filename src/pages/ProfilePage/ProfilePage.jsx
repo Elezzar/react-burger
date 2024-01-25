@@ -1,15 +1,13 @@
 import { useDispatch } from 'react-redux';
 import { NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 
-// import NotFoundPage from "../NotFoundPage/NotFoundPage";
-
 import { logOutAction } from "../../services/actions/userAction";
 import { getCookie } from "../../utils/cookies";
 
 import ProfilePageStyles from './ProfilePage.module.css'
 import OrderFeedInfoPage from '../OrderFeedInfoPage/OrderFeedInfoPage';
-import OrderFeed from '../../components/OrderFeed/OrderFeed';
 import Modal from '../../components/Modal/Modal';
+import OrderFeedInfo from '../../components/OrderFeedInfo/OrderFeedInfo';
 
 const ProfilePage = () => {
 
@@ -49,9 +47,9 @@ const ProfilePage = () => {
         <p className={`${ProfilePageStyles.text} text text_type_main-default text_color_inactive`}>В этом разделе вы можете изменить свои персональные данные</p>
       </nav>
       <Outlet />
-      {background && (
+      {background && location.pathname !== "/feed" && (
         <Modal closePopup={closeModal}>
-          <OrderFeed />
+          <OrderFeedInfo />
         </Modal>
       )}
     </main>

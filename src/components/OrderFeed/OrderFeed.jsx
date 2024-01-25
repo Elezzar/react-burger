@@ -33,7 +33,11 @@ const OrderFeed = () => {
 
           return (
             <li className={OrderFeedStyles.item} key={order._id} 
-              onClick={() => {navigate(`/feed/${orderId}`, {state: {modal: true, background: location}})}}>
+            onClick={() => {
+              if (!background) {
+                navigate(`/feed/${orderId}`, { state: { modal: true, background: location } });
+              }
+            }}>
               <div className={`${OrderFeedStyles.box} mb-6`}>
                 <p className="text text_type_digits-default">#{order.number}</p>
                 <p className="text text_type_main-default text_color_inactive">{time}{setDate(order.createdAt)}</p>

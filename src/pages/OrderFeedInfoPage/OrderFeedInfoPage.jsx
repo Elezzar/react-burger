@@ -21,9 +21,6 @@ const OrderFeedInfoPage = () => {
   const orders = location.pathname.includes('feed') ? ordersData : userOrdersWSData;
   const order = orders.find(order => order._id === id);
 
-  // console.log(ordersData)
-  // console.log(userOrdersWSData)
-
   useEffect(() => {
     if (location.pathname.includes('/feed')) {
       dispatch({

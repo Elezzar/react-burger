@@ -20,7 +20,6 @@ const ProfileOrdersPage = () => {
   const userDataName = useSelector(store => store.user.name);
   const ingredientsData = useSelector(state => state.ingredients.ingredients);
   const userOrdersWSData = useSelector(store => store.wsUserFeed.orders);
-
   
   useEffect(() => {
     dispatch({
@@ -35,9 +34,6 @@ const ProfileOrdersPage = () => {
     };
   }, [dispatch, userDataName]);
   
-  // console.log(userOrdersWSData)
-  // console.log(ingredientsData)
-  // console.log(userDataName)
   return ( 
     <article className={ProfileOrdersPageStyles.container}>
       <ul className={ProfileOrdersPageStyles.list}>

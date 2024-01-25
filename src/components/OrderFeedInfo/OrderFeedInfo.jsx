@@ -12,10 +12,6 @@ const OrderFeedInfo = () => {
   const ordersWSData = useSelector(store => store.wsOrders.orders);
   const userOrdersWSData = useSelector(store => store.wsUserFeed.orders);
 
-  // console.log(ingredientsData)
-  // console.log(ordersWSData)
-  // console.log(userOrdersWSData)
-
   const {id} = useParams();
   
   const location = useLocation();
@@ -27,7 +23,6 @@ const OrderFeedInfo = () => {
   const orderDate = <FormattedDate date={new Date(order.createdAt)} />
   const totalPrice = sumPrice(order.ingredients, ingredientsData);
   
-  //проверить работу функции
   const countIngredients = (arr) => {
     return arr.reduce((counts, el) => {
       counts[el] = (counts[el] || 0) + 1;
