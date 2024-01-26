@@ -16,9 +16,9 @@ const AppHeader = () => {
             <BurgerIcon type={location.pathname === "/" ? "primary" : "secondary"} /> 
             <p className={`text text_type_main-default pl-2 ${location.pathname === "/" ? '' : "text_color_inactive"}`}>Конструктор</p>
           </NavLink>
-          <NavLink to="*" className={headerStyles.navlink}>
-            <ListIcon type={location.pathname === "*" ? "primary" : "secondary"} /> 
-            <p className={`text text_type_main-default pl-2 ${location.pathname === "*" ? '' : "text_color_inactive"}`}>Лента заказов</p>
+          <NavLink to="/feed" className={headerStyles.navlink}>
+            <ListIcon type={location.pathname === "/feed" ? "primary" : "secondary"} /> 
+            <p className={`text text_type_main-default pl-2 ${location.pathname === "/feed" ? '' : "text_color_inactive"}`}>Лента заказов</p>
           </NavLink>
         </div>
         <div className={headerStyles.logo}>

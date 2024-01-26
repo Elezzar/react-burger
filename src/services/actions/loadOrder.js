@@ -1,4 +1,5 @@
 import { request } from "../../utils/api.js";
+import { getCookie } from "../../utils/cookies.js";
 
 export const SEND_ORDER_FAILED = 'SEND_ORDER_FAILED';
 export const SEND_ORDER_SUCCESS = 'SEND_ORDER_SUCCESS';
@@ -8,7 +9,10 @@ export const loadOrder = (ingredientsID) => async (dispatch) => {
   try {
     const options = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        Authorization: "Bearer " + getCookie('accessToken')
+      },
       body: JSON.stringify({
         ingredients: ingredientsID,
       }),

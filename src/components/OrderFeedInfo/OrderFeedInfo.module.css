@@ -1,0 +1,71 @@
+.container {
+  margin: 0 auto;
+  padding: 60px 0px 40px;
+  width: 640px;
+  flex-direction: column;
+}
+
+.number {
+  text-align: left;
+}
+
+.status {
+  color: #00CCCC;
+}
+
+.list {
+  margin-bottom: 40px;
+  padding: 0;
+  height: 100%;
+  max-height: 312px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+  overflow: auto;
+  scrollbar-color: rgba(133, 133, 173, 1);
+  scrollbar-width: thin;
+}
+
+.ingredients {
+  max-width: 608px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.box {
+  display: flex;
+  column-gap: 16px;
+}
+
+.image {
+  width: 61px;
+  height: 61px;
+  border-radius: 50px;
+  border: 2px solid rgba(128, 26, 178, 1);
+  object-fit: cover;
+  object-position: center;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  max-width: 320px;
+}
+
+.priceBox {
+  display: flex;
+  align-items: center;
+  column-gap: 9px;
+}
+
+.infoBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.price {
+  display: flex;
+  align-self: center;
+  column-gap: 8px;
+}

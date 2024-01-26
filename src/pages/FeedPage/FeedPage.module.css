@@ -1,0 +1,39 @@
+.main {
+  margin: 40px auto 0;
+  max-width: 1240px;
+  max-height: 912px;
+  max-height: 100%;
+}
+
+.container {
+  margin-top: 20px;
+  height: 100%;
+  max-height: 812px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.feedInfo {
+  width: 584px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 60px;
+}
+
+.status {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.total {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 60px;
+}

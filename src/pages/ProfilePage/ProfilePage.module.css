@@ -38,14 +38,3 @@
   color: #8585AD;
   opacity: 40%;
 }
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.box {
-  align-self: end;
-  display: flex;
-}
