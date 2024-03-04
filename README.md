@@ -6,6 +6,8 @@ https://elezzar.github.io/react-burger/
 * Flexbox
 * JavaScript
 * React
+* Redux
+* TypeScript
 
 **Описание**
 
@@ -13,5 +15,5 @@ https://elezzar.github.io/react-burger/
 
 **Примечание**
 
-Проект находится в разработке.
+Проект находится в разработке, подготовлен в рамках курса Яндекс.Практикума
 
