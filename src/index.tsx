@@ -1,22 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './components/App/App.jsx';
+import App from './components/App/App.tsx';
 
 import { Provider } from 'react-redux';
-// import { rootReducer } from './services/reducers/rootReducer';
-// import { applyMiddleware, legacy_createStore as createStore} from 'redux'
-// import thunk from 'redux-thunk';
-// import { composeWithDevTools } from 'redux-devtools-extension';
 
 import store from './services/store';
 
-// const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+const rootElement: HTMLElement | null = document.getElementById('root');
+if (!rootElement) {
+  throw new Error('Root element not found');
+}
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-
+const root = ReactDOM.createRoot(rootElement);
 root.render(
   <Provider store={store}>
     <React.StrictMode>
